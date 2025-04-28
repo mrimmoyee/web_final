@@ -1,0 +1,470 @@
+/* CSS Reset */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;}
+
+/* CSS Variables */
+:root{
+    --navbar-height: 59px;
+}
+
+/* Navigation Bar */
+#navbar{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+}
+
+#navbar::before{
+    content: "";
+    background-color: black;
+    position: absolute;
+    top:0px;
+    left:0px;
+    height: 100%;
+    width:100%;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+/* Navigation Bar: Logo and Image */
+#logo{
+    margin: 10px 10px;
+}
+
+#logo img{
+    height: 59px;
+    margin: 0px 0cap;
+}
+
+
+/* Navigation Bar: List Styling */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+	transition: top 0.3s;
+    z-index: 1000; /* Ensure the navbar stays on top of other elements */
+    background-color: rgba(83, 79, 79, 0.241); /* Adjust the background to ensure visibility */
+    padding: 10px 20px; /* Add some padding to make it look nice */
+}
+#navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+#navbar ul li {
+    margin-right: 20px; /* Spacing between nav items */
+}
+
+#navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#navbar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight hover effect */
+}
+
+/* Auth Links (Sign In, Login) */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    margin-right: 10px;
+}
+
+.auth-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+.auth-links a.btn-signin {
+    background-color: transparent;
+}
+.auth-links a.btn-login {
+    background-color: white;
+    color: black;
+}
+
+.auth-links a:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container {
+    cursor: pointer;
+    margin-left: 20px;
+}
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+
+html {
+    scroll-behavior: smooth; /* Enables smooth scroll behavior */
+}
+body {
+    margin-top: 80px;
+}
+
+/* Home Section */
+#home{
+    display: flex;
+    flex-direction: column;
+    padding:3px 200px;
+    height: 550px;
+    justify-content: center;
+    align-items: center;
+}
+
+#home::before{ 
+    content: "";
+    position: absolute;
+    background: url('ev.jpg') no-repeat center center/cover;
+    height: 642px;
+    top:0px;
+    left:0px;
+    width: 100%;
+    z-index: -1;
+    opacity:0.89;
+}
+
+#home h1{
+    color:rgb(255, 255, 255);
+    text-align: center;
+    font-family: 'Bree Serif', serif;
+}
+
+#home p{
+    color:white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Bree Serif', serif;
+}
+/* Services Section */
+#services{
+    margin: 34px;
+    display: flex;
+    justify-content: center;
+}
+#services .box{ 
+    border: 0px solid rgb(42, 122, 165);
+    padding: 0px;
+    margin: 2px 55px;
+    box-shadow: #f2f2f2;
+    background: #f2f2f2;
+	border-radius: 5%;
+    margin-bottom: 20px;
+	transition: box-shadow 0.3s ease;
+}
+#services .box:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+#services .box img { 
+    height: 180px;
+    width: 100%; /* Ensures the image fits the width of the box */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 10%; /* Optional: Matches the box's border radius */
+}
+
+#services .box p{
+    font-family: 'Bree Serif', serif;
+
+} 
+
+
+/* Clients Section */
+/* General styling for the section */
+/* General Event Section Styles */
+#eventList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Individual Event Card Style */
+.event-card {
+    width: 250px;
+    background-color: grey;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: #f2f2f2;
+    background: #f2f2f2;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Event Image (Optional, if you want to add an image) */
+.event-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Event Title */
+.event-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    margin: 0;
+}
+
+/* Event Date */
+.event-date {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 10px;
+    margin: 0;
+}
+
+/* Event Description */
+.event-description {
+    font-size: 0.9rem;
+    color: palevioletred;
+    padding: 10px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+/* Hover Effect for Event Cards */
+.event-card:hover {
+    transform: translateY(-10px);  /* Elevate the card */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);  /* Increase shadow on hover */
+}
+
+/* Optional: Hover effect for event title */
+.event-card:hover .event-title {
+    color: #007BFF;  /* Change color on hover */
+}
+
+/* Optional: Hover effect for event description */
+.event-card:hover .event-description {
+    color: #333;  /* Darker color on hover */
+}
+
+
+/* Contact Section */
+#contact{
+    position: relative;
+}
+#contact::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.7;
+    background: url('drkr.jpg') no-repeat center center/cover;
+
+}
+#contact-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 34px;
+}
+#contact-box input, 
+#contact-box textarea{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 9px;
+    font-size: 1.1rem;
+} 
+
+#contact-box form{
+    width: 40%;
+}
+
+#contact-box label{
+   font-size: 1.3rem;
+   font-family: 'Bree Serif', serif;
+
+}
+
+
+footer{
+    background: black;
+    color: rgb(0, 0, 0);
+    padding: 9px 20px;
+}
+
+/* Utility Classes */
+.h-primary{
+    font-family: 'Bree Serif', serif;
+    font-size: 3.8rem;
+    padding: 12px;
+}
+
+.h-secondary{
+    font-family: 'Bree Serif', serif;
+    font-size: 2.3rem;
+    padding: 12px;
+}
+
+.btn {
+    padding: 6px 20px;
+    border: 2px solid rgb(16, 140, 157);
+    background-color: rgb(42, 128, 165);
+    color: white;
+    margin: 17px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transition for smooth effect */
+}
+
+/* Hover Effect */
+.btn:hover {
+    background-color: rgb(16, 140, 157); /* Change background color on hover */
+    border-color: rgb(42, 128, 165); /* Optionally change border color */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+.center{
+    text-align: center;
+}
+#news {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+}
+
+#news .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+#news .section-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+#noticeList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+
+}
+
+.notice-box {
+    width: 250px;
+    background-color: grey;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: #f2f2f2;
+    background: #f2f2f2;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notice-box:hover {
+    transform: translateY(-10px);  /* Elevate the card */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);  /* Increase shadow on hover */
+}
+
+.notice-box h3 {
+    padding: 10px;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color:#007BFF;
+}
+
+.notice-box p {
+    padding: 10px;
+    font-size: 1em;
+    color: palevioletred;
+}
+
+
+.submit-btn {
+    background-color: #4c7daf; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.submit-btn:hover {
+    background-color: #133c5e; /* Darker green on hover */
+}
+
+.submit-btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.submit-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.video-link {
+    text-decoration: underline; /* Adds underline to the link */
+}
+.video-pic {
+    display: block; /* Ensures the image remains visible */
+}
+
+
+/* For responsiveness, stack the columns on smaller screens */
+@media screen and (max-width: 768px) {
+    #news .row {
+        flex-direction: column;
+    }
+}
+
