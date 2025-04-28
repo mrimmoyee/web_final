@@ -1,10 +1,10 @@
-// firebaseauth.js
+
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import { getFirestore, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-// Firebase configuration
+
 const firebaseConfig = {
     apiKey: "AIzaSyAL0UKvBVHertMHi9Zg0zJZdHgydXXxzIM",
     authDomain: "login-8133e.firebaseapp.com",
@@ -14,23 +14,23 @@ const firebaseConfig = {
     appId: "1:668804295177:web:fb0bba99c987da360a26d8"
 };
 
-// Initialize Firebase app
+
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);  // Export auth here
+export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-// Function to check if the user is signed in
+
 export function isUserSignedIn() {
     return localStorage.getItem('loggedInUserId') !== null;
 }
 
-// Redirect to sign-in page if not logged in
+
 export function redirectToSignIn() {
     alert("Please sign in first!");
     window.location.href = 'signin.html';
 }
 
-// Show message function
+ 
 function showMessage(message, divId, isError = false) {
     const messageDiv = document.getElementById(divId);
     if (messageDiv) {
@@ -44,7 +44,7 @@ function showMessage(message, divId, isError = false) {
     }
 }
 
-// Set loading state for buttons
+
 function setLoading(buttonId, isLoading) {
     const button = document.getElementById(buttonId);
     if (button) {
@@ -53,7 +53,7 @@ function setLoading(buttonId, isLoading) {
     }
 }
 
-// Retry an operation in case of network issues
+
 async function retryOperation(operation, maxAttempts = 3) {
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
         try {
@@ -68,10 +68,10 @@ async function retryOperation(operation, maxAttempts = 3) {
     }
 }
 
-// Event listener for DOMContentLoaded to handle sign-up and sign-in forms
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Sign-Up form submission
+    
     const signUpForm = document.getElementById("signUpForm");
     if (signUpForm) {
         signUpForm.addEventListener("submit", async function(event) {
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Sign-In form submission
+    
     const signIn = document.getElementById('submitSignIn');
     if (signIn) {
         signIn.addEventListener('click', async (event) => {
