@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Child Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module" src="firebaseauth.js"></script>
+    <script type="module" src="special child.js"></script>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    <div class="stars"></div>
+    <header>
+        <h1>Special Child Dashboard</h1>
+        <button id="menuButton" class="menu-button">☰ Menu</button>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <a href="#" id="closeButton" class="close-btn">&times;</a>
+        <a href="index.html" id="homeLink">Home</a>
+        <a href="#" id="profileSection">Profile</a>
+        <a href="#" id="logoutLink">Logout</a>
+    </div>
+    
+    <main>
+        <div id="profileContainer">
+            <h2>Profile</h2>
+            <form id="profileForm">
+                <div class="profile-header">
+                    <img id="profilePic" src="/default-profile.png" alt="Profile Picture">
+                    <input type="file" id="profileImage" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="about">About Me:</label>
+                    <textarea id="about" rows="4"></textarea>
+                </div>
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+
+        <div id="enrolledCoursesContainer">
+            <h2>Your Enrolled Courses</h2>
+            <div id="enrolledCoursesList"></div>
+        </div>
+
+        <div id="setsContainer">
+            <h2>Available Sets</h2>
+            <div id="setsList"></div>
+        </div>
+        
+        <div id="quizContainer">
+            <h2 id="setTitle"></h2>
+            <div id="questionsList"></div>
+            <button id="submitQuiz">Submit Quiz</button>
+            <p id="quizResult"></p>
+            <button id="goBackButton">Go Back to Dashboard</button>
+        </div> 
+    </main>
+    
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+    
+        document.addEventListener("DOMContentLoaded", () => {
+            const auth = getAuth();
+            const db = getFirestore();
+    
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    try {
+                        const userDocRef = doc(db, "users", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+    
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            const enrolledCourses = userData.enrolledCourses || [];
+                            const enrolledCoursesList = document.getElementById("enrolledCoursesList");
+    
+                            enrolledCoursesList.innerHTML = ""; // Clear previous content
+    
+                            if (enrolledCourses.length === 0) {
+                                enrolledCoursesList.innerHTML = '<p>You have not enrolled in any courses yet.</p>';
+                            } else {
+                                enrolledCourses.forEach(course => {
+                                    const courseElement = document.createElement("div");
+                                    courseElement.classList.add("enrolled-course");
+                                    courseElement.innerHTML = `
+                                        <p><strong>Course:</strong> ${course.subject}</p>
+                                        <p><strong>Level:</strong> ${course.level}</p>
+                                        <p><strong>Enrolled On:</strong> ${course.enrolledAt ? new Date(course.enrolledAt).toLocaleDateString() : "N/A"}</p>
+                                    `;
+                                    enrolledCoursesList.appendChild(courseElement);
+                                });
+                            }
+                        } else {
+                            console.log("User document not found.");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                    }
+                } else {
+                    console.log("No user is signed in.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
