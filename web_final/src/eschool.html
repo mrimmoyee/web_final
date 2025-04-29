@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-School for Autistic Children</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eschool.css">
+</head>
+<body>
+    <div class="container">
+        <header class="floating">
+            <button class="home-btn" onclick="window.location.href='index.html'">
+                🏠 Home
+            </button>
+            <h1>Welcome to the E-School</h1>
+            <p>A magical learning platform for autistic children and their families.</p>
+            <div class="header-buttons">
+                <button id="yourCoursesBtn" class="guide-btn" style="display: none;" onclick="window.location.href='your-course.html'">
+                    <i class="fas fa-book"></i> Your Courses
+                </button>
+                <button class="guide-btn" id="guideBtn"><i class="fas fa-star"></i> Guide Me</button>
+                <button class="mode-btn" id="modeBtn">
+                    <i class="fas fa-moon mode-icon"></i> Dark Mode
+                </button>
+            </div>
+        </header>
+        
+        <section class="subjects">
+            <h2>Explore Courses</h2>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn left" id="carouselLeftBtn"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel" id="carousel">
+                    <div class="tile" data-subject="Math">
+                        <h3>Math</h3>
+                        <p>Learn shapes, numbers, and fun patterns.</p>
+                    </div>
+                    <div class="tile" data-subject="Science">
+                        <h3>Science</h3>
+                        <p>Explore experiments and nature.</p>
+                    </div>
+                    <div class="tile" data-subject="Art">
+                        <h3>Art</h3>
+                        <p>Creative expression through drawing and painting.</p>
+                    </div>
+                    <div class="tile" data-subject="Words">
+                        <a href="music.html" style="text-decoration: none; color: inherit;">
+                            <h3>Words</h3>
+                            <p>Enjoy fun sounds and rhythms.</p>
+                        </a>
+    
+                    </div>
+                </div>
+                <button class="carousel-btn right" id="carouselRightBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="activities floating">
+            <h2>Fun Activities</h2>
+            <p>Pick an activity and dive into learning!</p>
+            <button id="activityBtn" class="pulse-btn">Start Activity</button>
+        </section>
+
+        <section class="parents">
+            <h2>For Parents</h2>
+            <div class="parent-content">
+                <p>We offer resources and support for parents to guide their autistic children’s learning journey.</p>
+                <ul>
+                    <li><a href="#" class="sparkle-link" onclick="alert('Learning tips loaded')">Learning Tips</a></li>
+                    <li><a href="#" class="sparkle-link" onclick="alert('Support Groups information loaded')">Support Groups</a></li>
+                    <li><a href="#" class="sparkle-link" onclick="alert('Contact details loaded')">Speak with a Specialist</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="floating">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ef86818980af8a9c8c87808083c18c8082">[email protected]</a> | Phone: 123-456-7890</p>
+        </footer>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="float-icon book"><i class="fas fa-book"></i></div>
+        <div class="float-icon pencil"><i class="fas fa-pencil-alt"></i></div>
+        <div class="float-icon star"><i class="fas fa-star"></i></div>
+        <div class="float-icon music"><i class="fas fa-music"></i></div>
+    </div>
+
+    <!-- Starry Background -->
+    <div class="stars"></div>
+
+    <!-- Guide Assistant -->
+    <div class="guide-assistant" id="guideAssistant" style="display: none;">
+        <div class="guide-content">
+            <h4>Welcome to E-School! 🌟</h4>
+            <p>Here’s how to get started:</p>
+            <ul>
+                <li>Click a course to explore details.</li>
+                <li>Choose a level and enroll.</li>
+                <li>Access your enrolled courses under "Your Courses."</li>
+            </ul>
+            <button class="close-guide" id="closeGuideBtn">Close</button>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script type="module" src="eschool.js"></script>
+    <script type="module" src="firebaseauth.js"></script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+        import { toggleGuide, toggleMode, scrollCarousel } from './eschool.js';
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const auth = getAuth();
+            const db = getFirestore();
+
+            // Add event listener for the guide button
+            const guideBtn = document.getElementById('guideBtn');
+            if (guideBtn) {
+                guideBtn.addEventListener('click', toggleGuide);
+            }
+
+            // Add event listener for the mode button
+            const modeBtn = document.getElementById('modeBtn');
+            if (modeBtn) {
+                modeBtn.addEventListener('click', toggleMode);
+            }
+
+            // Add event listeners for carousel buttons
+            const carouselLeftBtn = document.getElementById('carouselLeftBtn');
+            const carouselRightBtn = document.getElementById('carouselRightBtn');
+            if (carouselLeftBtn) {
+                carouselLeftBtn.addEventListener('click', () => scrollCarousel('left'));
+            }
+            if (carouselRightBtn) {
+                carouselRightBtn.addEventListener('click', () => scrollCarousel('right'));
+            }
+
+            onAuthStateChanged(auth, async (user) => {
+                console.log('Auth state in eschool.html:', user ? 'User is signed in' : 'No user signed in');
+                if (user) {
+                    try {
+                        const userDocRef = doc(db, "users", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            console.log('User data in eschool.html:', userData);
+                            const enrolledCourses = userData.enrolledCourses || [];
+                            console.log('Enrolled courses:', enrolledCourses);
+                            if (enrolledCourses.length > 0) {
+                                console.log('Showing Your Courses button');
+                                document.getElementById("yourCoursesBtn").style.display = "inline-block";
+                            } else {
+                                console.log('No enrolled courses, hiding Your Courses button');
+                                document.getElementById("yourCoursesBtn").style.display = "none";
+                            }
+                        } else {
+                            console.log('User document does not exist');
+                        }
+                    } catch (error) {
+                        console.error('Error fetching user data in eschool.html:', error);
+                    }
+                } else {
+                    console.log('No user signed in, hiding Your Courses button');
+                    document.getElementById("yourCoursesBtn").style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
