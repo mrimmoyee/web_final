@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="users.css">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAL0UKvBVHertMHi9Zg0zJZdHgydXXxzIM",
+            authDomain: "login-8133e.firebaseapp.com",
+            projectId: "login-8133e",
+            storageBucket: "login-8133e.firebasestorage.app",
+            messagingSenderId: "668804295177",
+            appId: "1:668804295177:web:fb0bba99c987da360a26d8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadAllUsers() {
+            const allUsersList = document.getElementById("allUsersList");
+            try {
+                const usersRef = collection(db, "users");
+                const usersSnapshot = await getDocs(usersRef);
+
+
+                allUsersList.innerHTML = "";
+
+                if (usersSnapshot.empty) {
+                    allUsersList.textContent = "No users found.";
+                    return;
+                }
+
+                usersSnapshot.forEach((doc) => {
+                    const user = doc.data();
+                    const name = user.firstName || "No Name"; 
+                    const email = user.email || "No Email";
+
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${name} (${email})`;
+                    allUsersList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error("Error loading users:", error);
+                allUsersList.textContent = "Error loading users. Please check the console for details.";
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", loadAllUsers);
+    </script>
+</head>
+<body>
+    <h1>All Users</h1>
+    <ul id="allUsersList">
+    </ul>
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Styling for the user list container */
+#allUsersList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Individual user card styling */
+#allUsersList li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Hover effect for each user card */
+#allUsersList li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design: Stack cards vertically on smaller screens */
+@media (max-width: 600px) {
+    #allUsersList {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #allUsersList li {
+        width: 80%;
+    }
+}
