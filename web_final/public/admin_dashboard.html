@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin_dashboard.css">
+    <script type="module" src="firebaseauth.js"></script>
+    <script type="module" src="admin.js"></script>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    <div class="stars"></div>
+    <header>
+        <button id="menuButton" class="menu-button">☰ Menu</button>
+        <h1>Admin Dashboard</h1>
+        <div class="profile-header">
+            <img id="headerProfilePic" src="/default-profile.png" alt="Profile" class="header-profile-pic">
+            <span id="headerProfileName"></span>
+        </div>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <a href="#" id="closeButton" class="close-btn">×</a>
+        <a href="index.html" id="homeLink">Home</a>
+        <!-- <a href="upload_videos.html" id="uploadVideosLink">Upload Videos</a> -->
+        <!-- <a href="all_videos.html" id="allVideosLink">All Videos</a> -->
+        <a href="edit_profile.html" id="editProfileLink">Edit Profile</a>
+        <a href="#" id="profileSection">Profile</a>
+        <a href="#" id="logoutLink">Logout</a>
+    </div>
+    <main>
+        <div id="profileContainer" style="display: none;">
+            <h2>My Profile</h2>
+            <div class="profile-info">
+                <img id="profilePic" src="/default-profile.png" alt="Profile Picture" class="profile-pic">
+                <form id="profileForm">
+                    <input type="file" id="profileImage" accept="image/*">
+                    <textarea id="about" placeholder="Write about yourself..."></textarea>
+                    <button type="submit">Update Profile</button>
+                </form>
+            </div>
+        </div>
+
+        <h2>Welcome to the Admin Dashboard</h2>
+        <p>Manage your content and videos here.</p>
+        
+        <button id="detailsButton">Details</button>
+        <button id="postEventButton">Post Event</button>
+        <button id="postNoticeButton">Post Notice</button> 
+        <button id="eventRegistrationDetailsButton">Event Registration Details</button> 
+        <button id="messagesButton">Messages</button>
+
+        <div id="userDetails" style="display: none;">
+            <h3>User Details</h3>
+            <ul id="userList"></ul>
+        </div>
+
+        
+        <div id="postNoticeForm" style="display: none; margin-top: 20px;">
+            <h3>Post a Notice</h3>
+            <section id="postNoticeSection">
+                <div id="postNoticeForm" style="display: flex;">
+                    <form id="noticeForm">
+                        <input type="text" id="noticeTitle" placeholder="Notice Title" required />
+                        <textarea id="noticeDetails" placeholder="Notice Details" required></textarea>
+                        <button type="submit" id="submitNotice">Submit</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="eventRegistrationsSection" style="display: none;">
+            <h3>Event Registrations</h3>
+            <div id="eventList">
+
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        document.getElementById("postEventButton").addEventListener("click", () => {
+            window.location.href = "post-event.html";
+        });
+
+        document.getElementById("messagesButton").addEventListener("click", () => {
+            window.location.href = "messages.html";
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9238f3631b3b770f',t:'MTc0MjUxMjkzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
