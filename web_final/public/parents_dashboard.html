@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module" src="firebaseauth.js"></script>
+    <script type="module" src="parents.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Parent Dashboard</h1>
+        <button id="menuButton" class="menu-button">☰ Menu</button>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <a href="#" id="closeButton" class="close-btn">&times;</a>
+        <a href="index.html" id="homeLink">Home</a>
+        
+        <a href="#" id="logoutLink">Logout</a>
+    </div>
+    <main>
+        <!-- Connect with Special Child Section -->
+        <div class="container" id="signIn">
+            <h1 class="form-title">Connect With Your Child</h1>
+            <form method="post" action="">
+              <div id="signInMessage" class="messageDiv" style="display:none;"></div>
+    
+              <div class="input-group">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email"  id="email" placeholder="Email" required>
+                  <label for="email">Email</label>
+              </div>
+              <div class="input-group">
+                <i class="fas fa-lock"></i>
+              <input type="password" id="password"  placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+              <button  class="btn"  id="submitSignIn">Connect</button>
+              </form>
+        </div>
+
+        
+        
+    </main>
+    
+</body>
+</html>
