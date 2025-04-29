@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+h2 {
+    color: #34495e;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.question-container {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Add a hover effect on the question box */
+.question-container:hover {
+    transform: scale(1.02);
+}
+
+/* Style for the question text */
+.question-container p {
+    font-size: 16px;
+    margin: 0 0 15px;
+    font-weight: 500;
+}
+
+/* Label styling for the radio buttons */
+.question-container label {
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="radio"] {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #bdc3c7;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button.previous {
+    background-color: #007bff;
+}
+
+button.previous:hover {
+    background-color: #0056b3;
+}
+
+score {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.score h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.score h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+.table td {
+    background-color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* Style for the navigation buttons */
+.previous, .next {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+}
+
+.previous:hover, .next:hover {
+    background-color: #218838;
+}
+
+/* Input field styling */
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
