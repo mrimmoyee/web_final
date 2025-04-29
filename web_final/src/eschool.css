@@ -1,0 +1,943 @@
+/* Define CSS Variables for Dark and Light Modes */
+:root {
+    /* Dark Mode Colors (Default) */
+    --background-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #e94560);
+    --text-color: #f5f7fa;
+    --tile-bg: linear-gradient(145deg, #0f3460, #1a1a2e);
+    --tile-border: rgba(233, 69, 96, 0.3);
+    --section-bg: rgba(255, 255, 255, 0.05);
+    --section-shadow: rgba(255, 255, 255, 0.15);
+    --header-bg: rgba(233, 69, 96, 0.2);
+    --header-shadow: rgba(233, 69, 96, 0.4);
+    --button-gradient: linear-gradient(45deg, #e94560, #f5f7fa);
+    --button-text: #1a1a2e;
+    --button-shadow: rgba(233, 69, 96, 0.5);
+    --highlight-color: #e94560;
+    --stars-bg: #f5f7fa;
+    --float-icon-color: #f5f7fa;
+}
+
+body.light-mode {
+    /* Light Mode Colors */
+    --background-gradient: linear-gradient(135deg, #f5f7fa, #e0e5ec, #d3e0ea, #f7c9d3);
+    --text-color: #1a1a2e;
+    --tile-bg: linear-gradient(145deg, #e0e5ec, #d3e0ea);
+    --tile-border: rgba(233, 69, 96, 0.5);
+    --section-bg: rgba(26, 26, 46, 0.05);
+    --section-shadow: rgba(26, 26, 46, 0.15);
+    --header-bg: rgba(233, 69, 96, 0.1);
+    --header-shadow: rgba(233, 69, 96, 0.2);
+    --button-gradient: linear-gradient(45deg, #f7c9d3, #1a1a2e);
+    --button-text: #f5f7fa;
+    --button-shadow: rgba(233, 69, 96, 0.3);
+    --highlight-color: #e94560;
+    --stars-bg: #1a1a2e;
+    --float-icon-color: #1a1a2e;
+}
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-gradient);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Starry Background */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.stars::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--stars-bg);
+    box-shadow: 10px 10px 0 var(--stars-bg), 50px 30px 0 var(--stars-bg), 80px 100px 0 var(--stars-bg), 120px 50px 0 var(--stars-bg),
+                150px 200px 0 var(--stars-bg), 200px 150px 0 var(--stars-bg), 300px 100px 0 var(--stars-bg), 400px 50px 0 var(--stars-bg),
+                500px 300px 0 var(--stars-bg), 600px 200px 0 var(--stars-bg), 700px 150px 0 var(--stars-bg), 800px 250px 0 var(--stars-bg);
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* Container */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+header.floating {
+    text-align: center;
+    padding: 40px;
+    background: var(--header-bg);
+    border-radius: 20px;
+    box-shadow: 0 0 30px var(--header-shadow);
+    margin: 30px 0;
+    animation: floatUpDown 4s ease-in-out infinite;
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+header h1 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 3.5em;
+    margin: 0;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    font-size: 1.4em;
+    opacity: 0.9;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.guide-btn, .mode-btn {
+    padding: 10px 20px;
+    background: var(--button-gradient);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--button-shadow);
+}
+
+.guide-btn:hover, .mode-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--button-shadow);
+}
+
+.mode-btn i {
+    margin-right: 5px;
+}
+
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Subjects Section - Infinite 3D Carousel */
+.subjects {
+    margin: 60px 0;
+    text-align: center;
+    padding: 30px;
+    background: var(--section-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--section-shadow);
+    position: relative;
+}
+
+.subjects h2 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--highlight-color);
+    text-shadow: 2px 2px 4px rgba(233, 69, 96, 0.5);
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carousel {
+    display: flex;
+    perspective: 1000px;
+    gap: 20px;
+    /* Removed transition to let JS handle it */
+}
+
+.tile {
+    background: var(--tile-bg);
+    width: 250px;
+    height: 300px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 0 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--tile-border);
+}
+
+.tile:hover {
+    transform: translateZ(30px) rotateY(10deg) scale(1.1);
+    box-shadow: 0 15px 30px rgba(233, 69, 96, 0.5);
+}
+
+.tile.middle-tile {
+    transform: translateZ(50px) scale(1.3); /* Larger scale for middle tile */
+    box-shadow: 0 0 30px rgba(233, 69, 96, 0.8), 0 10px 20px rgba(0, 0, 0, 0.4);
+    animation: pulseMiddle 2s infinite;
+}
+
+@keyframes pulseMiddle {
+    0% { transform: translateZ(50px) scale(1.3); }
+    50% { transform: translateZ(60px) scale(1.35); }
+    100% { transform: translateZ(50px) scale(1.3); }
+}
+
+.tile h3 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--highlight-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.tile p {
+    font-size: 1.1em;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.tile a {
+    display: block;
+    height: 100%;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(233, 69, 96, 0.5);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5em;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-btn.left {
+    left: 10px;
+}
+
+.carousel-btn.right {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background: rgba(233, 69, 96, 0.8);
+}
+
+/* Activities Section */
+.activities.floating {
+    text-align: center;
+    margin: 60px 0;
+    padding: 30px;
+    background: var(--header-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--header-shadow);
+    animation: floatUpDown 4s ease-in-out infinite;
+    position: relative;
+}
+
+.activities h2 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--highlight-color);
+}
+
+.activities p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.pulse-btn {
+    padding: 15px 30px;
+    background: var(--button-gradient);
+    color: var(--button-text);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--button-shadow);
+    animation: pulse 2s infinite;
+}
+
+.pulse-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--button-shadow);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Parents Section */
+.parents {
+    margin: 60px auto;
+    text-align: center;
+    padding: 30px;
+    background: var(--section-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--section-shadow);
+    position: relative;
+}
+
+.parents h2 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--highlight-color);
+}
+
+.parent-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.parent-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.parent-content li {
+    margin: 15px 0;
+}
+
+.sparkle-link {
+    color: var(--highlight-color);
+    font-size: 1.2em;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.sparkle-link:hover {
+    color: var(--text-color);
+}
+
+.sparkle-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--text-color);
+    transition: width 0.3s ease;
+}
+
+.sparkle-link:hover::after {
+    width: 100%;
+}
+
+/* Footer */
+footer.floating {
+    margin-top: 60px;
+    padding: 30px 0;
+    background: var(--header-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--header-shadow);
+    animation: floatUpDown 4s ease-in-out infinite;
+}
+
+footer h2 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: var(--highlight-color);
+}
+
+footer p {
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+/* Levels Section */
+.levels {
+    text-align: center;
+    margin: 60px 0;
+    padding: 30px;
+    background: var(--header-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--header-shadow);
+}
+
+.level-option {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--tile-bg);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+}
+
+.level-option h4 {
+    margin: 10px 0;
+    font-size: 1.7em;
+    color: var(--highlight-color);
+}
+
+.level-option button {
+    padding: 10px 20px;
+    margin: 5px;
+    background: var(--button-gradient);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--button-shadow);
+}
+
+.level-option button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--button-shadow);
+}
+
+/* Content Section */
+.content {
+    text-align: center;
+    margin: 60px 0;
+    padding: 30px;
+    background: var(--section-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--section-shadow);
+}
+
+.video-placeholder {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+}
+
+.video-placeholder p {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.video-placeholder video {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.resource-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.resource-list ul li {
+    margin: 15px 0;
+}
+
+.resource-list a {
+    color: var(--highlight-color);
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.resource-list a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+/* Quiz Section Styles */
+.quiz-section {
+    text-align: center;
+    margin: 60px 0;
+    padding: 30px;
+    background: var(--header-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--header-shadow);
+}
+
+.quiz-section button {
+    padding: 10px 20px;
+    background: var(--button-gradient);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--button-shadow);
+}
+
+.quiz-section button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--button-shadow);
+}
+
+/* Fade-in Animation */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Tile Click Animation */
+.tile-clicked {
+    animation: tileClick 0.3s ease;
+}
+
+@keyframes tileClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.navigation-buttons button {
+    padding: 8px 16px;
+    background: var(--button-gradient);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--button-shadow);
+}
+
+.navigation-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--button-shadow);
+}
+
+/* Quiz Options */
+.quiz-option {
+    display: inline-block;
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.quiz-option input[type="radio"] {
+    margin-right: 8px;
+}
+
+.feedback {
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.correct {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.incorrect {
+    color: #ff4d88;
+    font-weight: 600;
+}
+
+.celebration {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--header-bg);
+    border-radius: 10px;
+    animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.float-icon {
+    position: absolute;
+    color: var(--float-icon-color);
+    font-size: 1.5em;
+    opacity: 0.5;
+    animation: floatElement 10s infinite ease-in-out;
+}
+
+.float-icon.book {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.float-icon.pencil {
+    top: 30%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.float-icon.star {
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 4s;
+}
+
+.float-icon.music {
+    bottom: 10%;
+    right: 5%;
+    animation-delay: 6s;
+}
+
+@keyframes floatElement {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(30px, -50px);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+}
+
+/* Guide Assistant */
+.guide-assistant {
+    position: fixed;
+    top: 20%;
+    right: 20px;
+    background: var(--header-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 20px var(--header-shadow);
+    padding: 20px;
+    max-width: 300px;
+    z-index: 1000;
+    animation: popIn 0.5s ease;
+    border: 2px solid var(--highlight-color);
+}
+
+.guide-content h4 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.5em;
+    color: var(--highlight-color);
+    margin-bottom: 10px;
+}
+
+.guide-content p {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.guide-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.guide-content ul li {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin: 5px 0;
+    position: relative;
+    padding-left: 15px;
+}
+
+.guide-content ul li::before {
+    content: '✨';
+    position: absolute;
+    left: 0;
+    color: var(--highlight-color);
+}
+
+.close-guide {
+    padding: 8px 16px;
+    background: var(--button-gradient);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--button-shadow);
+}
+
+.close-guide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--button-shadow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tile {
+        width: 200px;
+        height: 250px;
+    }
+
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    .subjects h2, .activities h2, .parents h2, footer h2 {
+        font-size: 2em;
+    }
+
+    .pulse-btn, .level-option button, .quiz-section button, .guide-btn, .mode-btn {
+        font-size: 1.1em;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tile {
+        width: 180px;
+        height: 220px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .subjects h2, .activities h2, .parents h2, footer h2 {
+        font-size: 1.8em;
+    }
+
+    .pulse-btn, .level-option button, .quiz-section button, .guide-btn, .mode-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
+/* Course Details Section */
+.course-details {
+    text-align: center;
+    margin: 60px 0;
+    padding: 30px;
+    background: var(--section-bg);
+    border-radius: 25px;
+    box-shadow: 0 0 20px var(--section-shadow);
+}
+
+.course-details h2 {
+    font-family: 'Comic Neue', cursive;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--highlight-color);
+    text-shadow: 2px 2px 4px rgba(233, 69, 96, 0.5);
+}
+
+.level-selection {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.level-selection label {
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.5em;
+    color: var(--text-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.level-selection select {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background: var(--tile-bg);
+    border: 2px solid var(--highlight-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--button-shadow);
+    appearance: none; /* Remove default dropdown arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23e94560" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 40px; /* Space for the custom arrow */
+}
+
+.level-selection select:focus {
+    outline: none;
+    border-color: var(--text-color);
+    box-shadow: 0 0 15px var(--highlight-color);
+}
+
+.level-selection select:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--button-shadow);
+}
+
+.level-selection select option {
+    background: var(--tile-bg);
+    color: var(--text-color);
+}
+
+/* Responsive Design for Level Selection */
+@media (max-width: 768px) {
+    .level-selection {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .level-selection label {
+        font-size: 1.3em;
+    }
+
+    .level-selection select {
+        font-size: 1.1em;
+        padding: 8px 16px;
+    }
+}
+.subjects {
+    margin: 60px 0;
+    text-align: center;
+}
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: max-content; /* Ensure the carousel can hold all tiles */
+}
+
+.tile {
+    background: var(--tile-bg);
+    border-radius: 15px;
+    font: optional;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px var(--tile-shadow);
+}
+
+.tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--tile-shadow);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--highlight-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2em;
+    transition: background 0.3s ease;
+}
+
+.carousel-btn.left {
+    left: 10px;
+}
+
+.carousel-btn.right {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background: var(--text-color);
+}
+
+.home-btn {
+    position: absolute;  /* Position it absolutely */
+    top: 20px;           /* 20px from the top */
+    left: 20px;          /* 20px from the left */
+    background-color:skyblue; /* Green background */
+    color: white;        /* White text color */
+    border: none;        /* Remove the border */
+    padding: 10px 20px;  /* Add some padding */
+    font-size: 16px;     /* Font size */
+    border-radius: 8px;  /* Rounded corners */
+    cursor: pointer;    /* Cursor pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.home-btn:hover {
+    background-color: rgb(30, 30, 155);  /* Darker green when hovered */
+}
+.enroll-btn {
+    background-color: skyblue;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 0 20px var(--section-shadow);
+    backdrop-filter: blur(5px);
+}
