@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Videos</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Include Cloudinary's JavaScript SDK from the CDN -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+    <script type="module" src="upload_videos.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Upload Videos</h1>
+        <a href="admin_dashboard.html" class="back-button">← Back to Dashboard</a>
+    </header>
+    <main>
+        <form id="videoUploadForm">
+            <label for="videoTitle">Video Title:</label>
+            <input type="text" id="videoTitle" required>
+            
+            <label for="videoFile">Choose Video File:</label>
+            <input type="file" id="videoFile" accept="video/*" required>
+            
+            <button type="submit">Upload Video</button>
+        </form>
+        <p id="statusMessage"></p>
+        
+        <!-- Display uploaded video after successful upload -->
+        <div id="videoPreview">
+            <h2>Uploaded Video:</h2>
+            <video id="uploadedVideo" controls width="500">
+                <source id="videoSource" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </main>
+</body>
+</html>
