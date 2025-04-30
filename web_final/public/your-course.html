@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Course - E-School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="your-course.css">
+</head>
+<body>
+    <div class="container">
+        <header class="floating">
+            <button class="home-btn" onclick="window.location.href='index.html'">
+                🏠 Home
+            </button>
+            <h1>Your Course</h1>
+            <p>Access your enrolled course content.</p>
+            <div class="header-buttons">
+                <button class="guide-btn" onclick="window.location.href='eschool.html'">
+                    <i class="fas fa-arrow-left"></i> Back to E-School
+                </button>
+                <!-- <button class="mode-btn" id="modeBtn">
+                    <i class="fas fa-moon mode-icon"></i> Dark Mode
+                </button> -->
+            </div>
+        </header>
+
+        <section class="course-content">
+            <div id="courseCard" style="display:none;">
+                <h2 id="courseTitle"></h2>
+                <div class="course-details">
+                    <p id="courseLevel"></p>
+                    <p id="courseEnrolledOn"></p>
+                </div>
+                <div class="tiles-container">
+                    <div class="tile" id="tutorialTile">📺 Tutorial</div>
+                    <div class="tile" id="resourcesTile">📄 Resources</div>
+                    <div class="tile" id="quizTile">📝 Quiz</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAL0UKvBVHertMHi9Zg0zJZdHgydXXxzIM",
+            authDomain: "login-8133e.firebaseapp.com",
+            projectId: "login-8133e",
+            storageBucket: "login-8133e.firebasestorage.app",
+            messagingSenderId: "668804295177",
+            appId: "1:668804295177:web:fb0bba99c987da360a26d8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) {
+                    alert('Please sign in to view your courses.');
+                    window.location.href = 'signin.html';
+                    return;
+                }
+
+                const userDocRef = doc(db, "users", user.uid);
+                const userDoc = await getDoc(userDocRef);
+
+                if (!userDoc.exists()) {
+                    console.error('User document does not exist.');
+                    alert('User data not found.');
+                    return;
+                }
+
+                const userData = userDoc.data();
+                const enrolledCourses = userData.enrolledCourses || [];
+
+                if (enrolledCourses.length === 0) {
+                    alert('You have not enrolled in any courses yet.');
+                    window.location.href = 'eschool.html';
+                    return;
+                }
+
+                // Assuming the user has only one course enrolled (or you can loop through the array if needed)
+                const enrolledCourse = enrolledCourses[0]; 
+                const { subject, level, enrolledAt } = enrolledCourse;
+
+                // Set course title and level
+                document.getElementById('courseTitle').textContent = `${subject} - ${level} Level`;
+                document.getElementById('courseLevel').textContent = `Level: ${level}`;
+                document.getElementById('courseEnrolledOn').textContent = `Enrolled On: ${new Date(enrolledAt).toLocaleDateString()}`;
+
+                // Display the course card
+                document.getElementById('courseCard').style.display = 'block';
+
+                // Show the course action tiles (Tutorial, Resources, Quiz)
+                const tilesContainer = document.querySelector('.tiles-container');
+                tilesContainer.style.display = 'block';
+
+                // Set up event listeners for the tiles
+                document.getElementById("tutorialTile").addEventListener("click", () => {
+                    window.location.href = `tutorial.html?subject=${encodeURIComponent(subject)}&level=${encodeURIComponent(level)}`;
+                });
+
+                document.getElementById("resourcesTile").addEventListener("click", () => {
+                    window.location.href = `ebook.html?subject=${encodeURIComponent(subject)}&level=${encodeURIComponent(level)}`;
+                });
+
+                document.getElementById("quizTile").addEventListener("click", () => {
+                    window.location.href = `quiz.html?subject=${encodeURIComponent(subject)}&level=${encodeURIComponent(level)}`;
+                });
+            });
+
+            // Dark mode functionality
+            const modeBtn = document.getElementById('modeBtn');
+            const body = document.body;
+            
+            // Check if dark mode is already enabled (stored in localStorage)
+            if(localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                modeBtn.innerHTML = `<i class="fas fa-sun mode-icon"></i> Light Mode`;
+            }
+
+            modeBtn.addEventListener('click', () => {
+                // Toggle dark mode
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    modeBtn.innerHTML = `<i class="fas fa-sun mode-icon"></i> Light Mode`;
+                } else {
+                    localStorage.removeItem('darkMode');
+                    modeBtn.innerHTML = `<i class="fas fa-moon mode-icon"></i> Dark Mode`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
