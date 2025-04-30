@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+    <h1>Quiz for <span id="quizSubject"></span> - <span id="quizLevel"></span> Level</h1>
+    
+    <div id="quizContainer">
+        <!-- Questions will be dynamically added here -->
+    </div>
+
+    <button id="submitBtn" onclick="submitQuiz()">Submit Quiz</button>
+
+    <div id="quizResult" class="result" style="display:none;">
+        <h2>Your Score: <span id="score"></span> / 15</h2>
+    </div>
+
+    <script>
+        // Parse query parameters to get subject and level
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+        const level = urlParams.get('level');
+        
+        // Display subject and level
+        document.getElementById('quizSubject').textContent = subject;
+        document.getElementById('quizLevel').textContent = level;
+
+        // Define questions
+        const quizQuestions = [
+            { question: 'What is 2 + 2?', options: ['3', '4', '5'], correct: 1 },
+            { question: 'What is 3 + 5?', options: ['7', '8', '9'], correct: 1 },
+            { question: 'What is 5 + 7?', options: ['10', '11', '12'], correct: 2 },
+            { question: 'What is 6 + 6?', options: ['12', '13', '14'], correct: 0 },
+            { question: 'What is 8 + 9?', options: ['15', '16', '17'], correct: 2 },
+            { question: 'What is 3 x 2?', options: ['5', '6', '7'], correct: 1 },
+            { question: 'What is 5 x 5?', options: ['20', '25', '30'], correct: 1 },
+            { question: 'What is 9 + 10?', options: ['19', '20', '21'], correct: 0 },
+            { question: 'What is 12 / 3?', options: ['3', '4', '5'], correct: 1 },
+            { question: 'What is 15 / 5?', options: ['3', '4', '5'], correct: 0 },
+            { question: 'What is 18 / 3?', options: ['5', '6', '7'], correct: 1 },
+            { question: 'What is 3 x 4?', options: ['10', '11', '12'], correct: 2 },
+            { question: 'What is 7 + 6?', options: ['12', '13', '14'], correct: 1 },
+            { question: 'What is 2 + 3?', options: ['4', '5', '6'], correct: 1 },
+            { question: 'What is 10 - 4?', options: ['6', '5', '7'], correct: 0 }
+        ];
+
+        // Render quiz questions
+        const quizContainer = document.getElementById('quizContainer');
+        quizQuestions.forEach((q, index) => {
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question');
+            questionElement.innerHTML = `
+                <p>${index + 1}. ${q.question}</p>
+                ${q.options.map((option, i) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${i}"> ${option}
+                    </label><br>
+                `).join('')}
+            `;
+            quizContainer.appendChild(questionElement);
+        });
+
+        function submitQuiz() {
+            let score = 0;
+
+            // Check answers
+            quizQuestions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+                const questionElement = document.querySelector(`.question:nth-child(${index + 1})`);
+                const options = questionElement.querySelectorAll('input[type="radio"]');
+
+                // Highlight the correct option (Green)
+                options[q.correct].parentElement.classList.add('correct');
+
+                // If the user selected an option
+                if (selectedOption) {
+                    const selectedValue = parseInt(selectedOption.value);
+                    // Highlight selected wrong option (Red)
+                    if (selectedValue !== q.correct) {
+                        options[selectedValue].parentElement.classList.add('incorrect');
+                    } else {
+                        // Increment score for correct answer
+                        score++;
+                    }
+                } else {
+                    // If no answer was selected, just highlight the correct answer
+                    options[q.correct].parentElement.classList.add('correct');
+                }
+            });
+
+            // Show score
+            document.getElementById('score').textContent = score;
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('submitBtn').style.display = 'none'; // Hide submit button after submission
+        }
+    </script>
+
+</body>
+</html>
