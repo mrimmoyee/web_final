@@ -1,0 +1,390 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #4B0082 0%, #E6E6FA 100%); /* Updated gradient: deep purple to soft lavender */
+    color: #fff;
+    position: relative;
+    overflow: hidden; /* Prevent floating elements from causing scrollbars */
+  }
+  
+  /* Floating 3D Background Elements */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place behind all content */
+    pointer-events: none; /* Prevent interaction with floating elements */
+  }
+  
+  .floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .floating-element {
+    position: absolute;
+    background: rgba(0, 206, 209, 0.3); /* Teal with transparency */
+    border-radius: 50%; /* Circular shapes */
+    box-shadow: 0 0 20px rgba(0, 206, 209, 0.5); /* Glow effect */
+    transform-style: preserve-3d;
+    animation: float 15s infinite linear;
+  }
+  
+  /* Different sizes and positions for floating elements */
+  .floating-element:nth-child(1) {
+    width: 50px;
+    height: 50px;
+    top: 10%;
+    left: 20%;
+    animation-duration: 20s;
+  }
+  
+  .floating-element:nth-child(2) {
+    width: 80px;
+    height: 80px;
+    top: 30%;
+    left: 70%;
+    animation-duration: 25s;
+    animation-delay: 2s;
+  }
+  
+  .floating-element:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    left: 40%;
+    animation-duration: 18s;
+    animation-delay: 4s;
+  }
+  
+  .floating-element:nth-child(4) {
+    width: 40px;
+    height: 40px;
+    top: 80%;
+    left: 10%;
+    animation-duration: 22s;
+    animation-delay: 6s;
+  }
+  
+  .floating-element:nth-child(5) {
+    width: 70px;
+    height: 70px;
+    top: 20%;
+    left: 90%;
+    animation-duration: 19s;
+    animation-delay: 8s;
+  }
+  
+  /* Floating Animation with 3D Effect */
+  @keyframes float {
+    0% {
+      transform: translate(0, 0) translateZ(0) rotate(0deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(100px, 100px) translateZ(50px) rotate(180deg);
+      opacity: 0.4;
+    }
+    100% {
+      transform: translate(0, 0) translateZ(0) rotate(360deg);
+      opacity: 0.8;
+    }
+  }
+  
+  /* Header */
+  h1 {
+    background: linear-gradient(90deg, #00CED1, #008B8B); /* Updated: Teal gradient */
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Chat Messages Container */
+  #chatMessages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Individual Messages */
+  .message {
+    display: flex;
+    align-items: flex-end;
+    max-width: 70%;
+    gap: 10px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Sent Messages (User's Side) */
+  .message.sent {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+  
+  .message.sent:hover {
+    transform: translateY(-5px) translateZ(10px); /* 3D lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .message.sent .text {
+    background: linear-gradient(90deg, #00CED1, #008B8B); /* Updated: Teal gradient */
+    color: white;
+    border-radius: 20px 20px 0 20px; /* Rounded corners except bottom-left */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Received Messages (Other User's Side) */
+  .message.received {
+    align-self: flex-start;
+  }
+  
+  .message.received:hover {
+    transform: translateY(-5px) translateZ(10px); /* 3D lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .message.received .text {
+    background: #F5F5F5; /* Updated: Soft white */
+    color: #333333; /* Updated: Dark gray for contrast */
+    border-radius: 20px 20px 20px 0; /* Rounded corners except bottom-right */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Pictures */
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .message:hover .profile-pic {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  
+  /* Message Bubble */
+  .text {
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Sticker Messages */
+  .message.sticker .text {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  
+  .message.sticker .text img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Chat Input */
+  #chatForm {
+    display: flex;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    gap: 10px; /* Add spacing between elements */
+  }
+  
+  #messageInput {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    margin-right: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  #messageInput:focus {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  #chatForm button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #00CED1, #008B8B); /* Updated: Teal gradient */
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #chatForm button:hover {
+    transform: translateY(-3px) translateZ(5px); /* 3D lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Emoji and Sticker Buttons */
+  #chatForm button#emojiBtn,
+  #chatForm button#stickerBtn {
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+  }
+  
+  #chatForm button#emojiBtn:hover,
+  #chatForm button#stickerBtn:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Emoji and Sticker Pickers */
+  .emoji-picker,
+  .sticker-picker {
+    position: absolute;
+    bottom: 70px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .emoji-picker span,
+  .sticker-picker img {
+    cursor: pointer;
+    margin: 5px;
+    font-size: 1.5rem;
+  }
+  
+  .sticker-picker img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Scrollbar */
+  #chatMessages::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  #chatMessages::-webkit-scrollbar-thumb {
+    background: #00CED1; /* Updated: Teal */
+    border-radius: 4px;
+  }
+  
+  #chatMessages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 18px;
+      padding: 15px;
+    }
+  
+    #chatMessages {
+      padding: 10px;
+      gap: 10px;
+    }
+  
+    .message {
+      max-width: 80%;
+    }
+  
+    .text {
+      font-size: 13px;
+      padding: 10px 15px;
+    }
+  
+    .message.sticker .text img {
+      max-width: 80px;
+    }
+  
+    #messageInput {
+      font-size: 13px;
+      padding: 10px;
+    }
+  
+    #chatForm button {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+  
+    .emoji-picker,
+    .sticker-picker {
+      bottom: 60px;
+      left: 10px;
+      max-height: 150px;
+    }
+  
+    .emoji-picker span,
+    .sticker-picker img {
+      font-size: 1.2rem;
+    }
+  
+    .sticker-picker img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .floating-element {
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
