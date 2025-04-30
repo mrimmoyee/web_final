@@ -7,7 +7,7 @@
 
 /* Body Styling - Void-like Space */
 body {
-    background: #ffffff;
+    background: #f1e2e2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,6 +24,7 @@ body {
     height: 600px;
     transform-style: preserve-3d;
     animation: float 6s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 /* Form Wrapper */
@@ -32,14 +33,14 @@ body {
     width: 100%;
     height: 100%;
     background: rgb(255, 255, 255);
-    border-radius: 50%;
-    box-shadow: 0 0 40px rgba(255, 77, 136, 0.5), inset 0 0 20px rgba(255, 77, 136, 0.3);
+    border-radius: 0%;
+    box-shadow: 0 0 40px rgba(215, 236, 246, 0.5), inset 0 0 20px rgba(175, 103, 127, 0.3);
     backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    color: #fff;
+    color: #0c3a52;
     overflow: visible;
     transition: opacity 0.5s ease;
 }
@@ -57,11 +58,11 @@ body {
     }
 }
 
-/* Form Title with Dynamic Fly-In */
+/* Form Title with Dynamic Fly-In sign in lekhatar*/
 .form-title {
     font-size: 2.2rem;
     font-weight: 800;
-    color: #ff4d88;
+    color: #00ccff;
     text-align: center;
     margin-bottom: 2rem;
     opacity: 0;
@@ -92,7 +93,7 @@ body {
     top: 2.5rem;
     left: 12px;
     transform: translateY(-50%);
-    color: #00ccff;
+    color: #010e1260;
     font-size: 1.2rem;
     z-index: 2;
 }
@@ -104,8 +105,8 @@ body {
     font-size: 1rem;
     border: none;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(172, 157, 157, 0.1);
+    box-shadow: inset 0 2px 5px rgba(12, 0, 0, 0.5);
     color: #fff;
     transition: all 0.3s ease;
     z-index: 1;
@@ -113,7 +114,7 @@ body {
 
 .input-group input:focus,
 .input-group select:focus {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.721);
     box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
     outline: none;
 }
@@ -135,8 +136,8 @@ body {
 .input-group select:focus + label {
     top: -10px;
     font-size: 0.8rem;
-    color: #ff4d88;
-    background: rgba(0, 0, 0, 0.9);
+    color: #f1f0f0;
+    background: rgba(51, 35, 35, 0.9);
     border-radius: 3px;
 }
 
@@ -147,7 +148,7 @@ button {
     font-size: 1.1rem;
     font-weight: 600;
     color: #fff;
-    background: linear-gradient(90deg, #ff4d88, #00ccff);
+    background: linear-gradient(90deg, #a22851, #00ccff);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -158,7 +159,7 @@ button {
 
 button:hover {
     transform: translateY(-3px) translateZ(5px);
-    box-shadow: 0 5px 20px rgba(255, 77, 136, 0.5);
+    box-shadow: 0 5px 20px rgba(77, 110, 255, 0.712);
 }
 
 /* Links and Additional Options */
@@ -245,7 +246,7 @@ button:hover {
 }
 
 .links p {
-    color: #99ccff;
+    color: #102b46;
     font-size: 0.9rem;
 }
 
