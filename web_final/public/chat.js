@@ -17,6 +17,7 @@ const firebaseConfig = {
   messagingSenderId: "668804295177",
   appId: "1:668804295177:web:fb0bba99c987da360a26d8",
 };
+//
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -35,10 +36,8 @@ const stickerBtn = document.getElementById("stickerBtn");
 const emojiPicker = document.getElementById("emojiPicker");
 const stickerPicker = document.getElementById("stickerPicker");
 
-// Generate a unique chat ID for the conversation
 const chatId = [currentUser, otherUser].sort().join("_");
 
-// Sample emojis and stickers
 const emojis = ['😊', '😂', '❤️', '👍', '🎉', '😍', '😢', '🔥'];
 const stickers = [
   's1.jpg',
@@ -46,7 +45,6 @@ const stickers = [
   's3.jpg',
 ];
 
-// Populate emoji picker
 emojis.forEach(emoji => {
   const span = document.createElement('span');
   span.textContent = emoji;
@@ -57,7 +55,6 @@ emojis.forEach(emoji => {
   emojiPicker.appendChild(span);
 });
 
-// Populate sticker picker
 stickers.forEach(sticker => {
   const img = document.createElement('img');
   img.src = sticker;
@@ -79,19 +76,16 @@ stickers.forEach(sticker => {
   stickerPicker.appendChild(img);
 });
 
-// Toggle emoji picker
 emojiBtn.addEventListener('click', () => {
   emojiPicker.style.display = emojiPicker.style.display === 'block' ? 'none' : 'block';
   stickerPicker.style.display = 'none';
 });
 
-// Toggle sticker picker
 stickerBtn.addEventListener('click', () => {
   stickerPicker.style.display = stickerPicker.style.display === 'block' ? 'none' : 'block';
   emojiPicker.style.display = 'none';
 });
 
-// Fetch chat messages in real-time
 const chatRef = collection(db, "chats", chatId, "messages");
 const chatQuery = query(chatRef, orderBy("timestamp"));
 
@@ -101,7 +95,6 @@ onSnapshot(chatQuery, (snapshot) => {
     const message = doc.data();
     const messageDiv = document.createElement("div");
 
-    // Determine message alignment based on sender
     const isCurrentUser = message.sender === currentUser;
     messageDiv.classList.add("message", isCurrentUser ? "sent" : "received");
 

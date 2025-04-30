@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growth assist</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="yt.css">
+</head>
+<body>
+  <header class="header">
+    <div class="left-section">
+      <button class="menu-icon">
+        <i class="material-icons">menu</i>
+      </button>
+      <div class="logo">
+        <img src="ga.png" alt="Logo">
+      </div>
+    </div>
+    
+    <div class="center-section">
+      <div class="search-container">
+        <div class="search-bar">
+          <input type="text" placeholder="Search">
+        </div>
+        <button class="search-button">
+          <i class="material-icons">search</i>
+        </button>
+      </div>
+      <button class="voice-search-button">
+        <i class="material-icons">mic</i>
+      </button>
+    </div>
+    
+    <div class="right-section">
+      <button class="create-btn">
+        <i class="material-icons">video_call</i>
+      </button>
+      <button>
+        <!-- <i class="material-icons">notifications</i> -->
+      </button>
+      <button class="user-profile" onclick="showUserDashboard()">
+        <img src="/default-profile.png" alt="User Profile" id="profilePic">
+      </button>
+      
+      <!-- User Profile Menu Dropdown -->
+      <div class="user-menu">
+        <div class="user-menu-header">
+          <img class="user-menu-avatar" src="https://picsum.photos/40/40?random=100" alt="User Profile">
+          <div class="user-menu-info">
+            <h3>Your Name</h3>
+            <p>your.email@example.com</p>
+          </div>
+        </div>
+        <div class="user-menu-items">
+          <div class="user-menu-item" id="viewChannelBtn" onclick="showUserChannelPage()">
+            <i class="material-icons">account_circle</i>
+            <span>Your channel</span>
+          </div>
+          <div class="user-menu-item" id="viewUploadsBtn" onclick="showUserDashboard()">
+            <i class="material-icons">upload</i>
+            <span>Uploaded videos</span>
+          </div>
+          <div class="user-menu-item">
+            <i class="material-icons">settings</i>
+            <span>Settings</span>
+          </div>
+          <div class="user-menu-item">
+            <i class="material-icons">help</i>
+            <span>Help</span>
+          </div>
+          <div class="user-menu-item">
+            <i class="material-icons">logout</i>
+            <span>Sign out</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="content-container">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-item active">
+          <i class="material-icons">home</i>
+          <span>Home</span>
+        </div>
+        <div class="sidebar-item">
+          <i class="material-icons">movie</i>
+          <span>Shorts</span>
+        </div>
+        <div class="sidebar-item" onclick="showSubscriptionsContent()">
+          <i class="material-icons">subscriptions</i>
+          <span>Subscriptions</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-item">
+          
+          
+        </div>
+        <div class="sidebar-item">
+          <i class="material-icons">history</i>
+          <span>History</span>
+        </div>
+        <!-- <div class="sidebar-item">
+          <i class="material-icons">slideshow</i>
+          <span>Your videos</span>
+        </div> -->
+        <!-- <div class="sidebar-item">
+          <i class="material-icons">schedule</i>
+          <span>Live Stream</span>
+        </div> -->
+        <div class="sidebar-item">
+          <i class="material-icons">thumb_up</i>
+          <span>Liked videos</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section" id="sidebar-subscriptions-section">
+        <!-- <h3>Subscriptions</h3> -->
+        <div id="sidebar-subscriptions-container">
+          
+        </div>
+      </div>
+      
+     
+    </aside>
+    
+    <main class="main-content">
+      <div class="categories">
+        <div class="chip selected">All</div>
+        <div class="chip">Web Development</div>
+        <div class="chip">Computer programming</div>
+        <div class="chip">JavaScript</div>
+        <div class="chip">CSS</div>
+        <div class="chip">HTML</div>
+        <div class="chip">Music</div>
+        <div class="chip">Gaming</div>
+      </div>
+      
+      <section class="shorts-section">
+        <h2 class="section-title">
+          <i class="material-icons">movie</i>
+          Shorts
+        </h2>
+        <div class="shorts-container">
+          <!-- Shorts will be generated by JavaScript -->
+        </div>
+      </section>
+      
+      <section class="videos-section">
+        <div class="video-grid">
+          <!-- Videos will be generated by JavaScript -->
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Upload Video</h2>
+        <span class="close">&times;</span>
+      </div>
+      
+      <div class="modal-body">
+        <form id="videoUploadForm">
+          <div class="form-group">
+            <label for="videoTitle">Title*</label>
+            <input type="text" id="videoTitle" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="videoDescription">Description</label>
+            <textarea id="videoDescription"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="videoCategory">Category</label>
+            <select id="videoCategory">
+              <option value="Web Development">Web Development</option>
+              <option value="Computer programming">Computer programming</option>
+              <option value="Music">Music</option>
+              <option value="Gaming">Gaming</option>
+              <option value="News">News</option>
+              <option value="Sports">Sports</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="videoFile">Video File*</label>
+            <input type="file" id="videoFile" accept="video/*" required>
+            <div class="preview-container">
+              <video id="videoPreview" controls></video>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="videoThumbnail">Thumbnail (optional)</label>
+            <input type="file" id="videoThumbnail" accept="image/*">
+            <div class="preview-container">
+              <img id="thumbnailPreview">
+            </div>
+          </div>
+          
+          <div class="progress-container">
+            <div class="progress">
+              <div id="uploadProgress" class="progress-bar"></div>
+            </div>
+            <div class="progress-text">0%</div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="upload-btn">Upload</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="yt.js"></script>
+</body>
+</html>

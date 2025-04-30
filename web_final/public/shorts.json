@@ -1,0 +1,51 @@
+[
+    {
+      "id": "s1",
+      "title": "Perfect sushi bite #shorts",
+      "thumbnail": "https://picsum.photos/id/101/180/320",
+      "views": "1.2M",
+      "url": "https://www.youtube.com/watch?v=example1"
+    },
+    {
+      "id": "s2",
+      "title": "Grilled BBQ special #food",
+      "thumbnail": "https://picsum.photos/id/102/180/320",
+      "views": "540K",
+      "url": "https://www.youtube.com/watch?v=example2"
+    },
+    {
+      "id": "s3",
+      "title": "Eating this delicious ramen",
+      "thumbnail": "https://picsum.photos/id/103/180/320",
+      "views": "2.4M",
+      "url": "https://www.youtube.com/watch?v=example3"
+    },
+    {
+      "id": "s4",
+      "title": "Handmade pearl bracelet",
+      "thumbnail": "https://picsum.photos/id/104/180/320",
+      "views": "780K",
+      "url": "https://www.youtube.com/watch?v=example4"
+    },
+    {
+      "id": "s5",
+      "title": "Homemade pizza recipe",
+      "thumbnail": "https://picsum.photos/id/105/180/320",
+      "views": "1.5M",
+      "url": "https://www.youtube.com/watch?v=example5"
+    },
+    {
+      "id": "s6",
+      "title": "Cheesy pasta delight",
+      "thumbnail": "https://picsum.photos/id/106/180/320",
+      "views": "890K",
+      "url": "https://www.youtube.com/watch?v=example6"
+    },
+    {
+      "id": "s7",
+      "title": "Cooking with my daughter",
+      "thumbnail": "https://picsum.photos/id/107/180/320",
+      "views": "3.2M",
+      "url": "https://www.youtube.com/watch?v=example7"
+    }
+  ]

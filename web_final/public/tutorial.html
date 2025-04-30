@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Page</title>
+    <link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+    <header>
+        <h1>Tutorialw Platform</h1>
+        <button id="uploadBtn"> </button>
+    </header>
+    <div id="vlogGrid" class="vlog-grid">
+        </div>
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <h2>Upload your Vlog</h2>
+            <input type="text" id="title" placeholder="Vlog Title">
+            <textarea id="description" placeholder="Description"></textarea>
+            <input type="file" id="videoFile">
+            <button id="submitUpload">Submit</button>
+            <button id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <div id="vlogGrid" class="vlog-grid">
+        <!-- Vlog items will be displayed here -->
+    </div>
+
+    <script src="tutorial.js"></script>
+</body>
+</html>
