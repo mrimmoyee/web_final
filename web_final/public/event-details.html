@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="event-details.css">
+    <script type="module" src="event-details.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Event Details</h1>
+    </header>
+
+    <main>
+        <div id="eventDetails">
+            <h2 id="eventTitle"></h2>
+            <p id="eventDescription"></p>
+            <p id="eventDate"></p>
+            <button id="registerButton">Register for the Event</button>
+
+            <div id="registrationForm" style="display: none;">
+                <h3>Register for the Event</h3>
+                <form id="registerForm">
+                    <input type="text" id="username" placeholder="Enter your username" required />
+                    <input type="email" id="email" placeholder="Enter your email" required />
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
