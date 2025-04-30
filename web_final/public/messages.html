@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Messages</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module" src="messages.js"></script> <!-- JS for fetching messages -->
+</head>
+<body>
+    <header>
+        <h1>Contact Messages</h1>
+        <button onclick="window.location.href='admin_dashboard.html'" class="back-button">⬅ Back to Dashboard</button>
+    </header>
+
+    <main>
+        <div id="messagesContainer" class="messages-container">
+        </div>
+    </main>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .messages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .message-tile {
+            background: rgb(255, 223, 244);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .message-tile h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .message-tile p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .back-button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</body>
+</html>
