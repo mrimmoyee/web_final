@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Event</title>
+    <link rel="stylesheet" href="post-event.css"> <!-- Add your styles if needed -->
+    <script type="module" src="post-event.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Post an Event</h1>
+    </header>
+    <main>
+       
+        <section id="postEventFormSection">
+            <h2>Event Details</h2>
+            <form id="postEventForm">
+                <input type="text" id="eventTitle" placeholder="Event Title" required />
+                <input type="date" id="eventDate" required />
+                <textarea id="eventDescription" placeholder="Event Description" required></textarea>
+                <button type="submit">Post Event</button>
+            </form>
+        </section>
+        <button id="backButton" class="back-button">Back to Admin Dashboard</button>
+    </main>
+</body>
+</html>
