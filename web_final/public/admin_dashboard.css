@@ -1,25 +1,6 @@
 /* Define CSS Variables for Dark and Light Modes */
 :root {
     /* Dark Mode Colors (Default) */
-    --background-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #e94560);
-    --text-color: #f5f7fa;
-    --tile-bg: linear-gradient(145deg, #0f3460, #1a1a2e);
-    --tile-border: rgba(233, 69, 96, 0.3);
-    --section-bg: rgba(255, 255, 255, 0.05);
-    --section-shadow: rgba(255, 255, 255, 0.15);
-    --header-bg: rgba(233, 69, 96, 0.2);
-    --header-shadow: rgba(233, 69, 96, 0.4);
-    --button-gradient: linear-gradient(45deg, #e94560, #f5f7fa);
-    --button-text: #1a1a2e;
-    --button-shadow: rgba(233, 69, 96, 0.5);
-    --highlight-color: #e94560;
-    --stars-bg: #f5f7fa;
-    --float-icon-color: #f5f7fa;
-    --sidebar-bg: #16213e;
-}
-
-body.light-mode {
-    /* Light Mode Colors */
     --background-gradient: linear-gradient(135deg, #f5f7fa, #e0e5ec, #d3e0ea, #f7c9d3);
     --text-color: #1a1a2e;
     --tile-bg: linear-gradient(145deg, #e0e5ec, #d3e0ea);
@@ -36,6 +17,7 @@ body.light-mode {
     --float-icon-color: #1a1a2e;
     --sidebar-bg: #e0e5ec;
 }
+
 
 /* General Reset */
 * {
